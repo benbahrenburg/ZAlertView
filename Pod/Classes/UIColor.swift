@@ -10,10 +10,10 @@ import UIKit
 
 public extension UIColor {
     class func color(_ hexString: String) -> UIColor? {
-        if (hexString.characters.count > 7 || hexString.characters.count < 7) {
+        if (hexString.count > 7 || hexString.count < 7) {
             return nil
         } else {
-            let hexStr: String = String(hexString[hexString.characters.index(hexString.startIndex, offsetBy: 1)...])
+            let hexStr: String = String(hexString[hexString.index(hexString.startIndex, offsetBy: 1)...])
             let hexInt = Int(hexStr, radix: 16)
             if let hex = hexInt {
                 let components = (
