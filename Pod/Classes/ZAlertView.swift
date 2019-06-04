@@ -53,39 +53,39 @@ import UIKit
     static let BackgroundAlpha: CGFloat       = 0.5
     
     // MARK: - Global
-    open static var padding: CGFloat               = ZAlertView.Padding
-    open static var innerPadding: CGFloat          = ZAlertView.InnerPadding
-    open static var cornerRadius: CGFloat          = ZAlertView.CornerRadius
-    open static var buttonHeight: CGFloat          = ZAlertView.ButtonHeight
-    open static var buttonSectionExtraGap: CGFloat = ZAlertView.ButtonSectionExtraGap
-    open static var textFieldHeight: CGFloat       = ZAlertView.TextFieldHeight
-    open static var backgroundAlpha: CGFloat       = ZAlertView.BackgroundAlpha
-    open static var blurredBackground: Bool        = false
-    open static var showAnimation: ShowAnimation   = .fadeIn
-    open static var hideAnimation: HideAnimation   = .fadeOut
-    open static var duration:CGFloat               = 0.3
-    open static var initialSpringVelocity:CGFloat  = 0.5
-    open static var damping:CGFloat                = 0.5
-    open static var statusBarStyle: UIStatusBarStyle?
+    public static var padding: CGFloat               = ZAlertView.Padding
+    public static var innerPadding: CGFloat          = ZAlertView.InnerPadding
+    public static var cornerRadius: CGFloat          = ZAlertView.CornerRadius
+    public static var buttonHeight: CGFloat          = ZAlertView.ButtonHeight
+    public static var buttonSectionExtraGap: CGFloat = ZAlertView.ButtonSectionExtraGap
+    public static var textFieldHeight: CGFloat       = ZAlertView.TextFieldHeight
+    public static var backgroundAlpha: CGFloat       = ZAlertView.BackgroundAlpha
+    public static var blurredBackground: Bool        = false
+    public static var showAnimation: ShowAnimation   = .fadeIn
+    public static var hideAnimation: HideAnimation   = .fadeOut
+    public static var duration:CGFloat               = 0.3
+    public static var initialSpringVelocity:CGFloat  = 0.5
+    public static var damping:CGFloat                = 0.5
+    public static var statusBarStyle: UIStatusBarStyle?
     
     
     // Font
-    open static var alertTitleFont: UIFont?
-    open static var messageFont: UIFont?
-    open static var buttonFont: UIFont?
+    public static var alertTitleFont: UIFont?
+    public static var messageFont: UIFont?
+    public static var buttonFont: UIFont?
     
     // Color
-    open static var positiveColor: UIColor?            = UIColor(red:0.09, green:0.47, blue:0.24, alpha:1.0)
-    open static var negativeColor: UIColor?            = UIColor(red:0.91, green:0.3, blue:0.24, alpha:1.0)
-    open static var neutralColor: UIColor?             = UIColor(red:0.93, green:0.94, blue:0.95, alpha:1.0)
-    open static var titleColor: UIColor?               = UIColor(red:0.5, green:0.55, blue:0.55, alpha:1.0)
-    open static var buttonTitleColor: UIColor?         = UIColor.white
-    open static var messageColor: UIColor?             = UIColor(red:0.5, green:0.55, blue:0.55, alpha:1.0)
-    open static var cancelTextColor: UIColor?          = UIColor(red:0.5, green:0.55, blue:0.55, alpha:1.0)
-    open static var normalTextColor: UIColor?          = UIColor.white
-    open static var textFieldTextColor: UIColor?       = UIColor(red:0.5, green:0.55, blue:0.55, alpha:1.0)
-    open static var textFieldBorderColor: UIColor?     = UIColor(red:0.5, green:0.55, blue:0.55, alpha:1.0)
-    open static var textFieldBackgroundColor: UIColor? = UIColor.white
+    public static var positiveColor: UIColor?            = UIColor(red:0.09, green:0.47, blue:0.24, alpha:1.0)
+    public static var negativeColor: UIColor?            = UIColor(red:0.91, green:0.3, blue:0.24, alpha:1.0)
+    public static var neutralColor: UIColor?             = UIColor(red:0.93, green:0.94, blue:0.95, alpha:1.0)
+    public static var titleColor: UIColor?               = UIColor(red:0.5, green:0.55, blue:0.55, alpha:1.0)
+    public static var buttonTitleColor: UIColor?         = UIColor.white
+    public static var messageColor: UIColor?             = UIColor(red:0.5, green:0.55, blue:0.55, alpha:1.0)
+    public static var cancelTextColor: UIColor?          = UIColor(red:0.5, green:0.55, blue:0.55, alpha:1.0)
+    public static var normalTextColor: UIColor?          = UIColor.white
+    public static var textFieldTextColor: UIColor?       = UIColor(red:0.5, green:0.55, blue:0.55, alpha:1.0)
+    public static var textFieldBorderColor: UIColor?     = UIColor(red:0.5, green:0.55, blue:0.55, alpha:1.0)
+    public static var textFieldBackgroundColor: UIColor? = UIColor.white
     
     // MARK: -
     open var alertType: AlertType = AlertType.alert
@@ -95,19 +95,19 @@ import UIKit
     
     open var okTitle: String? {
         didSet {
-            btnOk.setTitle(okTitle, for: UIControlState())
+            btnOk.setTitle(okTitle, for: UIControl.State())
         }
     }
     
     open var cancelTitle: String? {
         didSet {
-            btnCancel.setTitle(cancelTitle, for: UIControlState())
+            btnCancel.setTitle(cancelTitle, for: UIControl.State())
         }
     }
     
     open var closeTitle: String? {
         didSet {
-            btnClose.setTitle(closeTitle, for: UIControlState())
+            btnClose.setTitle(closeTitle, for: UIControl.State())
         }
     }
     
@@ -115,10 +115,10 @@ import UIKit
         didSet {
             weak var weakSelf = self
             if allowTouchOutsideToDismiss == false {
-                weakSelf?.tapOutsideTouchGestureRecognizer.removeTarget(weakSelf, action: #selector(ZAlertView.dismissAlertView))
+                weakSelf?.tapOutsideTouchGestureRecognizer.removeTarget(weakSelf as Any, action: #selector(ZAlertView.dismissAlertView))
             }
             else {
-                weakSelf?.tapOutsideTouchGestureRecognizer.addTarget(weakSelf, action: #selector(ZAlertView.dismissAlertView))
+                weakSelf?.tapOutsideTouchGestureRecognizer.addTarget(weakSelf as Any, action: #selector(ZAlertView.dismissAlertView))
             }
         }
     }
@@ -190,7 +190,7 @@ import UIKit
     public convenience init(title: String?, message: String?, closeButtonText: String?, closeButtonHandler: TouchHandler?) {
         self.init(title: title, message: message, alertType: AlertType.alert)
         self.closeTitle = closeButtonText
-        btnClose.setTitle(closeTitle, for: UIControlState())
+        btnClose.setTitle(closeTitle, for: UIControl.State())
         self.closeHandler = closeButtonHandler
         self.btnClose.touchHandler = self.closeHandler
     }
@@ -198,9 +198,9 @@ import UIKit
     public convenience init(title: String?, message: String?, okButtonText: String?, cancelButtonText: String?) {
         self.init(title: title, message: message, alertType: AlertType.confirmation)
         self.okTitle = okButtonText
-        self.btnOk.setTitle(okTitle, for: UIControlState())
+        self.btnOk.setTitle(okTitle, for: UIControl.State())
         self.cancelTitle = cancelButtonText
-        self.btnCancel.setTitle(cancelTitle, for: UIControlState())
+        self.btnCancel.setTitle(cancelTitle, for: UIControl.State())
     }
     
     public convenience init(title: String?, message: String?, isOkButtonLeft: Bool?, okButtonText: String?, cancelButtonText: String?, okButtonHandler: TouchHandler?, cancelButtonHandler: TouchHandler?) {
@@ -210,9 +210,9 @@ import UIKit
         }
         self.message = message
         self.okTitle = okButtonText
-        self.btnOk.setTitle(okTitle, for: UIControlState())
+        self.btnOk.setTitle(okTitle, for: UIControl.State())
         self.cancelTitle = cancelButtonText
-        self.btnCancel.setTitle(cancelTitle, for: UIControlState())
+        self.btnCancel.setTitle(cancelTitle, for: UIControl.State())
         self.okHandler = okButtonHandler
         self.btnOk.touchHandler = self.okHandler
         self.cancelHandler = cancelButtonHandler
@@ -233,7 +233,7 @@ import UIKit
         }
         let window = UIWindow(frame: (UIApplication.shared.keyWindow?.bounds)!)
         self.alertWindow = window
-        self.alertWindow.windowLevel = UIWindowLevelAlert
+        self.alertWindow.windowLevel = UIWindow.Level.alert
         self.alertWindow.backgroundColor = UIColor.clear
         self.alertWindow.rootViewController = self
         self.previousWindow = UIApplication.shared.keyWindow
@@ -279,9 +279,9 @@ import UIKit
         // Setup OK Button
         self.btnOk = ZButton(touchHandler: self.okHandler)
         if let okTitle = self.okTitle {
-            self.btnOk.setTitle(okTitle, for: UIControlState())
+            self.btnOk.setTitle(okTitle, for: UIControl.State())
         } else {
-            self.btnOk.setTitle("OK", for: UIControlState())
+            self.btnOk.setTitle("OK", for: UIControl.State())
         }
         self.btnOk.titleLabel?.font = ZAlertView.buttonFont ?? UIFont.boldSystemFont(ofSize: 14)
         self.btnOk.titleColor = ZAlertView.buttonTitleColor
@@ -290,20 +290,20 @@ import UIKit
         // Setup Cancel Button
         self.btnCancel = ZButton(touchHandler: self.cancelHandler)
         if let cancelTitle = self.cancelTitle {
-            self.btnCancel.setTitle(cancelTitle, for: UIControlState())
+            self.btnCancel.setTitle(cancelTitle, for: UIControl.State())
         } else {
-            self.btnCancel.setTitle("Cancel", for: UIControlState())
+            self.btnCancel.setTitle("Cancel", for: UIControl.State())
         }
         self.btnCancel.titleLabel?.font = ZAlertView.buttonFont ?? UIFont.boldSystemFont(ofSize: 14)
-        self.btnCancel.titleColor = ZAlertView.buttonTitleColor
+        self.btnCancel.titleColor = ZAlertView.cancelTextColor
         self.alertView.addSubview(btnCancel)
         
         // Setup Close button
         self.btnClose = ZButton(touchHandler: self.closeHandler)
         if let closeTitle = self.closeTitle {
-            self.btnClose.setTitle(closeTitle, for: UIControlState())
+            self.btnClose.setTitle(closeTitle, for: UIControl.State())
         } else {
-            self.btnClose.setTitle("Close", for: UIControlState())
+            self.btnClose.setTitle("Close", for: UIControl.State())
         }
         self.btnClose.titleLabel?.font = ZAlertView.buttonFont ?? UIFont.boldSystemFont(ofSize: 14)
         self.btnClose.titleColor = ZAlertView.buttonTitleColor
@@ -382,10 +382,10 @@ import UIKit
             }
             let buttonWidth             = width -  ZAlertView.padding * 2
             btnClose.frame              = CGRect(x: ZAlertView.padding, y: height, width: buttonWidth, height: ZAlertView.buttonHeight)
-            btnClose.setBackgroundImage(UIImage.imageWithSolidColor(ZAlertView.positiveColor, size: btnClose.frame.size), for: UIControlState())
+            btnClose.setBackgroundImage(UIImage.imageWithSolidColor(ZAlertView.positiveColor, size: btnClose.frame.size), for: UIControl.State())
             btnClose.layer.cornerRadius = ZAlertView.cornerRadius
             btnClose.clipsToBounds      = true
-            btnClose.addTarget(self, action: #selector(ZAlertView.buttonDidTouch(_:)), for: UIControlEvents.touchUpInside)
+            btnClose.addTarget(self, action: #selector(ZAlertView.buttonDidTouch(_:)), for: UIControl.Event.touchUpInside)
             self.height                 += ZAlertView.buttonHeight
             
         case .confirmation:
@@ -402,15 +402,15 @@ import UIKit
                 btnOk.frame = CGRect(x: ZAlertView.padding + ZAlertView.innerPadding + buttonWidth, y: height, width: buttonWidth, height: ZAlertView.buttonHeight)
             }
             
-            btnCancel.setBackgroundImage(UIImage.imageWithSolidColor(ZAlertView.negativeColor, size: btnCancel.frame.size), for: UIControlState())
+            btnCancel.setBackgroundImage(UIImage.imageWithSolidColor(ZAlertView.negativeColor, size: btnCancel.frame.size), for: UIControl.State())
             btnCancel.layer.cornerRadius = ZAlertView.cornerRadius
             btnCancel.clipsToBounds = true
-            self.btnCancel.addTarget(self, action: #selector(ZAlertView.buttonDidTouch(_:)), for: UIControlEvents.touchUpInside)
+            self.btnCancel.addTarget(self, action: #selector(ZAlertView.buttonDidTouch(_:)), for: UIControl.Event.touchUpInside)
             
-            btnOk.setBackgroundImage(UIImage.imageWithSolidColor(ZAlertView.positiveColor, size: btnOk.frame.size), for: UIControlState())
+            btnOk.setBackgroundImage(UIImage.imageWithSolidColor(ZAlertView.positiveColor, size: btnOk.frame.size), for: UIControl.State())
             btnOk.layer.cornerRadius = ZAlertView.cornerRadius
             btnOk.clipsToBounds = true
-            self.btnOk.addTarget(self, action: #selector(ZAlertView.buttonDidTouch(_:)), for: UIControlEvents.touchUpInside)
+            self.btnOk.addTarget(self, action: #selector(ZAlertView.buttonDidTouch(_:)), for: UIControl.Event.touchUpInside)
             self.height += ZAlertView.buttonHeight
             
         case .multipleChoice:
@@ -420,14 +420,14 @@ import UIKit
             for button in buttons {
                 button.frame = CGRect(x: ZAlertView.padding, y: height, width: width - ZAlertView.padding * 2, height: ZAlertView.buttonHeight)
                 if button.color != nil {
-                    button.setBackgroundImage(UIImage.imageWithSolidColor(button.color!, size: button.frame.size), for: UIControlState())
+                    button.setBackgroundImage(UIImage.imageWithSolidColor(button.color!, size: button.frame.size), for: UIControl.State())
                 } else {
-                    button.setBackgroundImage(UIImage.imageWithSolidColor(ZAlertView.neutralColor, size: button.frame.size), for: UIControlState())
+                    button.setBackgroundImage(UIImage.imageWithSolidColor(ZAlertView.neutralColor, size: button.frame.size), for: UIControl.State())
                 }
                 if button.titleColor != nil {
-                    button.setTitleColor(button.titleColor!, for: UIControlState())
+                    button.setTitleColor(button.titleColor!, for: UIControl.State())
                 } else {
-                    button.setTitleColor(ZAlertView.buttonTitleColor, for: UIControlState())
+                    button.setTitleColor(ZAlertView.buttonTitleColor, for: UIControl.State())
                 }
                 button.layer.cornerRadius = ZAlertView.cornerRadius
                 button.clipsToBounds = true
@@ -486,8 +486,8 @@ import UIKit
         let textField                = ZTextField(identifier: identifier)
         textField.leftView           = UIView(frame: CGRect(x: 0, y: 0, width: padding, height: ZAlertView.textFieldHeight))
         textField.rightView          = UIView(frame: CGRect(x: 0, y: 0, width: padding, height: ZAlertView.textFieldHeight))
-        textField.leftViewMode       = UITextFieldViewMode.always
-        textField.rightViewMode      = UITextFieldViewMode.always
+        textField.leftViewMode       = UITextField.ViewMode.always
+        textField.rightViewMode      = UITextField.ViewMode.always
         textField.keyboardType       = keyboardType
         textField.font               = font
         textField.placeholder        = placeHolder
@@ -535,11 +535,11 @@ import UIKit
     open func addButton(_ title: String, font: UIFont, color: UIColor?, titleColor: UIColor?, touchHandler: @escaping TouchHandler) {
         weak var weakSelf = self
         let button              = ZButton(touchHandler: touchHandler)
-        button.setTitle(title, for: UIControlState())
+        button.setTitle(title, for: UIControl.State())
         button.color            = color
         button.titleColor       = titleColor
         button.titleLabel?.font = font
-        button.addTarget(weakSelf!, action: #selector(ZAlertView.buttonDidTouch(_:)), for: UIControlEvents.touchUpInside)
+        button.addTarget(weakSelf!, action: #selector(ZAlertView.buttonDidTouch(_:)), for: UIControl.Event.touchUpInside)
         buttons.append(button)
         self.alertView.addSubview(button)
     }
@@ -550,7 +550,7 @@ import UIKit
         }).first
     }
     
-    func buttonDidTouch(_ sender: ZButton) {
+    @objc func buttonDidTouch(_ sender: ZButton) {
         weak var weakSelf = self
         if let listener = sender.touchHandler {
             if (weakSelf != nil) {
@@ -562,13 +562,13 @@ import UIKit
     // MARK: - Handle keyboard
     
     func registerKeyboardEvents() {
-        NotificationCenter.default.addObserver(self, selector: #selector(ZAlertView.keyboardDidShow(_:)), name:NSNotification.Name.UIKeyboardDidShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ZAlertView.keyboardDidShow(_:)), name:UIResponder.keyboardDidShowNotification, object: nil)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(ZAlertView.keyboardDidHide(_:)), name:NSNotification.Name.UIKeyboardDidHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ZAlertView.keyboardDidHide(_:)), name:UIResponder.keyboardDidHideNotification, object: nil)
     }
     
-    func keyboardDidShow(_ notification: Notification) {
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+    @objc func keyboardDidShow(_ notification: Notification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             self.oldFrame = self.alertView.frame
             let extraHeight = (oldFrame.size.height + oldFrame.origin.y) - (self.view.frame.size.height - keyboardSize.height)
             if extraHeight > 0 {
@@ -579,7 +579,7 @@ import UIKit
         }
     }
     
-    func keyboardDidHide(_ notification: Notification) {
+    @objc func keyboardDidHide(_ notification: Notification) {
         if self.oldFrame == nil {
             return
         }
@@ -603,7 +603,7 @@ import UIKit
         showWithDuration(Double(ZAlertView.duration))
     }
     
-    open func dismissAlertView() {
+    @objc open func dismissAlertView() {
         
         if ZAlertView.duration < 0.1
         {
@@ -682,7 +682,7 @@ import UIKit
             let currentFrame = self.alertView.frame
             self.alertView.frame = CGRect(x: currentFrame.origin.x, y: -currentFrame.size.height*4, width: currentFrame.size.width, height: currentFrame.size.height)
             
-            UIView.animate(withDuration: duration, delay: 0, usingSpringWithDamping: ZAlertView.damping, initialSpringVelocity: ZAlertView.initialSpringVelocity, options: UIViewAnimationOptions.allowUserInteraction, animations: { () -> Void in
+            UIView.animate(withDuration: duration, delay: 0, usingSpringWithDamping: ZAlertView.damping, initialSpringVelocity: ZAlertView.initialSpringVelocity, options: UIView.AnimationOptions.allowUserInteraction, animations: { () -> Void in
               
                 self.alertView.frame = currentFrame
                 self.backgroundView.alpha = ZAlertView.backgroundAlpha
@@ -696,7 +696,7 @@ import UIKit
             let currentFrame = self.alertView.frame
             self.alertView.frame = CGRect(x: currentFrame.origin.x, y: self.view.frame.size.height, width: currentFrame.size.width, height: currentFrame.size.height)
             
-            UIView.animate(withDuration: duration, delay: 0, usingSpringWithDamping: ZAlertView.damping, initialSpringVelocity: ZAlertView.initialSpringVelocity, options: UIViewAnimationOptions.allowUserInteraction, animations: { () -> Void in
+            UIView.animate(withDuration: duration, delay: 0, usingSpringWithDamping: ZAlertView.damping, initialSpringVelocity: ZAlertView.initialSpringVelocity, options: UIView.AnimationOptions.allowUserInteraction, animations: { () -> Void in
                 
                 self.alertView.frame = currentFrame
                 self.backgroundView.alpha = ZAlertView.backgroundAlpha
@@ -709,7 +709,7 @@ import UIKit
             let currentFrame = self.alertView.frame
            self.alertView.frame = CGRect(x: self.view.frame.size.width, y: currentFrame.origin.y, width: currentFrame.size.width, height: currentFrame.size.height)
             
-            UIView.animate(withDuration: duration, delay: 0, usingSpringWithDamping: ZAlertView.damping, initialSpringVelocity: ZAlertView.initialSpringVelocity, options: UIViewAnimationOptions.allowUserInteraction, animations: { () -> Void in
+            UIView.animate(withDuration: duration, delay: 0, usingSpringWithDamping: ZAlertView.damping, initialSpringVelocity: ZAlertView.initialSpringVelocity, options: UIView.AnimationOptions.allowUserInteraction, animations: { () -> Void in
                 
                 self.alertView.frame = currentFrame
                 self.backgroundView.alpha = ZAlertView.backgroundAlpha
@@ -723,7 +723,7 @@ import UIKit
             let currentFrame = self.alertView.frame
             self.alertView.frame = CGRect(x: -currentFrame.size.width, y: currentFrame.origin.y, width: currentFrame.size.width, height: currentFrame.size.height)
             
-            UIView.animate(withDuration: duration, delay: 0, usingSpringWithDamping: ZAlertView.damping, initialSpringVelocity: ZAlertView.initialSpringVelocity, options: UIViewAnimationOptions.allowUserInteraction, animations: { () -> Void in
+            UIView.animate(withDuration: duration, delay: 0, usingSpringWithDamping: ZAlertView.damping, initialSpringVelocity: ZAlertView.initialSpringVelocity, options: UIView.AnimationOptions.allowUserInteraction, animations: { () -> Void in
                 
                 self.alertView.frame = currentFrame
                 self.backgroundView.alpha = ZAlertView.backgroundAlpha
@@ -792,7 +792,7 @@ import UIKit
         case .bounceBottom:
             self.backgroundView.alpha = ZAlertView.backgroundAlpha
             let currentFrame = self.alertView.frame
-            UIView.animate(withDuration: duration, delay: 0, usingSpringWithDamping: ZAlertView.damping, initialSpringVelocity: ZAlertView.initialSpringVelocity, options: UIViewAnimationOptions.allowUserInteraction, animations: { () -> Void in
+            UIView.animate(withDuration: duration, delay: 0, usingSpringWithDamping: ZAlertView.damping, initialSpringVelocity: ZAlertView.initialSpringVelocity, options: UIView.AnimationOptions.allowUserInteraction, animations: { () -> Void in
                 self.alertView.frame = CGRect(x: currentFrame.origin.x, y: self.view.frame.size.height, width: currentFrame.size.width, height: currentFrame.size.height)
                 self.backgroundView.alpha = 0
                 }, completion: completion)
@@ -800,7 +800,7 @@ import UIKit
         case .bounceTop:
             self.backgroundView.alpha = ZAlertView.backgroundAlpha
             let currentFrame = self.alertView.frame
-            UIView.animate(withDuration: duration, delay: 0, usingSpringWithDamping: ZAlertView.damping, initialSpringVelocity: ZAlertView.initialSpringVelocity, options: UIViewAnimationOptions.allowUserInteraction, animations: { () -> Void in
+            UIView.animate(withDuration: duration, delay: 0, usingSpringWithDamping: ZAlertView.damping, initialSpringVelocity: ZAlertView.initialSpringVelocity, options: UIView.AnimationOptions.allowUserInteraction, animations: { () -> Void in
                 self.alertView.frame = CGRect(x: currentFrame.origin.x, y: -currentFrame.size.height, width: currentFrame.size.width, height: currentFrame.size.height)
                 self.backgroundView.alpha = 0
                 }, completion: completion)
@@ -809,7 +809,7 @@ import UIKit
             
             self.backgroundView.alpha = ZAlertView.backgroundAlpha
             let currentFrame = self.alertView.frame
-            UIView.animate(withDuration: duration, delay: 0, usingSpringWithDamping: ZAlertView.damping, initialSpringVelocity: ZAlertView.initialSpringVelocity, options: UIViewAnimationOptions.allowUserInteraction, animations: { () -> Void in
+            UIView.animate(withDuration: duration, delay: 0, usingSpringWithDamping: ZAlertView.damping, initialSpringVelocity: ZAlertView.initialSpringVelocity, options: UIView.AnimationOptions.allowUserInteraction, animations: { () -> Void in
                 self.alertView.frame = CGRect(x: self.view.frame.size.width, y: currentFrame.origin.y, width: currentFrame.size.width, height: currentFrame.size.height)
                 self.backgroundView.alpha = 0
                 }, completion: completion)
@@ -818,7 +818,7 @@ import UIKit
             
             self.backgroundView.alpha = ZAlertView.backgroundAlpha
             let currentFrame = self.alertView.frame
-            UIView.animate(withDuration: duration, delay: 0, usingSpringWithDamping: ZAlertView.damping, initialSpringVelocity: ZAlertView.initialSpringVelocity, options: UIViewAnimationOptions.allowUserInteraction, animations: { () -> Void in
+            UIView.animate(withDuration: duration, delay: 0, usingSpringWithDamping: ZAlertView.damping, initialSpringVelocity: ZAlertView.initialSpringVelocity, options: UIView.AnimationOptions.allowUserInteraction, animations: { () -> Void in
                 self.alertView.frame = CGRect(x: -currentFrame.size.width, y: currentFrame.origin.y, width: currentFrame.size.width, height: currentFrame.size.height)
                 self.backgroundView.alpha = 0
                 }, completion: completion)
@@ -844,7 +844,7 @@ import UIKit
         var titleColor: UIColor? {
             didSet {
                 weak var weakSelf = self
-                weakSelf?.setTitleColor(titleColor, for: UIControlState())
+                weakSelf?.setTitleColor(titleColor, for: UIControl.State())
             }
         }
         
