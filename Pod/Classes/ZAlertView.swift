@@ -295,7 +295,7 @@ import UIKit
             self.btnCancel.setTitle("Cancel", for: UIControl.State())
         }
         self.btnCancel.titleLabel?.font = ZAlertView.buttonFont ?? UIFont.boldSystemFont(ofSize: 14)
-        self.btnCancel.titleColor = ZAlertView.buttonTitleColor
+        self.btnCancel.titleColor = ZAlertView.cancelTextColor
         self.alertView.addSubview(btnCancel)
         
         // Setup Close button
